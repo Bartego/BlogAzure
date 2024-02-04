@@ -2,6 +2,7 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
+from django.http import HttpResponse
 
 from images.forms import UploadForm
 from images.models import Image
@@ -35,3 +36,11 @@ def upload_view(request):
         logger.warning(request.FILES)
 
     return redirect('images-index')
+
+
+def home(request):
+    return HttpResponse('<h1>Blog Home</h1>')
+
+
+def about(request):
+    return HttpResponse('<h1>Blog About</h1>')
