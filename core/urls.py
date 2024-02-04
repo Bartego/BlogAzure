@@ -20,7 +20,7 @@ from django.urls import path, include
 from core import settings
 
 urlpatterns = [
-    path('', include('images.urls')),
+    path('', include('images.urls')), # covers path('blog/', admin.site.urls) so its commented below
     path('admin/', admin.site.urls),
     # path('blog/', admin.site.urls),
 ]
