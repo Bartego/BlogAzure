@@ -22,7 +22,7 @@ from core import settings
 urlpatterns = [
     path('', include('images.urls')),
     path('admin/', admin.site.urls),
-    path('blog/', admin.site.urls),
+    # path('blog/', admin.site.urls),
 ]
 
 if settings.DEBUG:
