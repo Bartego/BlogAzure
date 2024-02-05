@@ -39,7 +39,7 @@ def upload_view(request):
 
 
 def home(request):
-    return HttpResponse('<h1>Blog Home</h1>')
+    return render(request, 'images/home.html')
 
 
 def about(request):
