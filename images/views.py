@@ -54,7 +54,7 @@ posts = [
 
 def home(request):
     context = {
-        'post': posts
+        'posts': posts # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
     }
     return render(request, 'images/home.html', context)
 
