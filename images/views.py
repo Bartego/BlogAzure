@@ -38,16 +38,16 @@ def upload_view(request):
 
 posts = [
     {
-        'author': 'CoreyMS',
+        'author': 'Matej',
         'title': 'Blog Post 1',
         'content': 'First post content',
-        'date_posted': 'August 27, 2018'
+        'date_posted': 'Jan 27, 2024'
     },
     {
-        'author': 'Jane Doe',
+        'author': 'JurajR',
         'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'August 28, 2018'
+        'content': 'Birthday post content',
+        'date_posted': 'Feb 5, 2024'
     }
 ]
 
@@ -60,4 +60,4 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'images/about.html')
+    return render(request, 'images/about.html', {'title':'About'})

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-</head>    
+    <head>
+        {% if title %}
+            <title>Django Blog - {{ title }}</title>
+        {% else %}
+            <title>Django Blog</title>
+        {% endif %}
+    </head>
 </html>
 <body>
-    <h1>  Wlecome Blog About Page !w!  </h1>
+    <h1>Wlecome Blog About Page !w!</h1>
 </body>
 </html>
