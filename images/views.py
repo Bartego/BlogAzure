@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
 from images.forms import UploadForm
-from images.models import Image
+from images.models import Image, Post
 from images.tables import ImageTable
 
 
@@ -54,7 +54,7 @@ posts = [
 
 def home(request):
     context = {
-        'posts': posts # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
+        'posts': Post.objects.all() # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
     }
     return render(request, 'images/home.html', context)
 
