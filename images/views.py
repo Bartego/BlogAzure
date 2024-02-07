@@ -36,20 +36,6 @@ def upload_view(request):
 
     return redirect('images-index')
 
-posts = [
-    {
-        'author': 'Matej',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'Jan 27, 2024'
-    },
-    {
-        'author': 'JurajR',
-        'title': 'Blog Post 2',
-        'content': 'Birthday post content',
-        'date_posted': 'Feb 5, 2024'
-    }
-]
 
 
 def home(request):
