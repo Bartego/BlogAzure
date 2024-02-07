@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from images.models import Image
+from images.models import Image, Post
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -9,4 +9,5 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Image, ImageAdmin)
+admin.site.register(Post)
 
