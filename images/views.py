@@ -2,6 +2,7 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
+from django.views.generic import ListView
 
 from images.forms import UploadForm
 from images.models import Image, Post
@@ -43,6 +44,12 @@ def home(request):
         'posts': Post.objects.all() # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
     }
     return render(request, 'images/home.html', context)
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'images/home.html'
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
 
 
 def about(request):
