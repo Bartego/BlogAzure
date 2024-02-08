@@ -2,7 +2,7 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from images.forms import UploadForm
 from images.models import Image, Post
@@ -54,6 +54,10 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title','content']
 
 def about(request):
     return render(request, 'images/about.html', {'title':'About'})
