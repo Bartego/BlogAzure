@@ -52,7 +52,7 @@ class PostListView(ListView):
     ordering = ['-date_posted']
 
 
-class PostDetailView(DetailViewView):
+class PostDetailView(DetailView):
     model = Post
 
 def about(request):
