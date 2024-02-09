@@ -59,5 +59,10 @@ class PostCreateView(CreateView):
     model = Post
     fields = ['title','content']
 
+    #following code will owerride default behaviour and post will be created with user that is currently loged
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 def about(request):
     return render(request, 'images/about.html', {'title':'About'})
