@@ -19,8 +19,11 @@ from django.urls import path, include
 
 from core import settings
 
+from users import views as user_views
+
 urlpatterns = [
     path('', include('images.urls')), # covers path('blog/', admin.site.urls) so its commented below
+    path('register/', user_views.register, name='register' ),
     path('admin/', admin.site.urls),
     # path('blog/', admin.site.urls),
 ]

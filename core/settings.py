@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'images.apps.ImagesConfig',
+    'users.apps.UsersConfig',
     'django_tables2',
     'crispy_forms',
 ]
