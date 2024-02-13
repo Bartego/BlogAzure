@@ -4,8 +4,8 @@ from .views import PostListView, PostDetailView, PostCreateView
 from . import views
 
 urlpatterns = [
-    path('image_upload', views.index_view, name='images-index'),
-    path('upload/', views.upload_view, name='images-upload'),
+   # path('image_upload', views.index_view, name='images-index'), #old project
+   # path('upload/', views.upload_view, name='images-upload'), # old project
     path('', PostListView.as_view(), name='blog-home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),

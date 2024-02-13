@@ -45,9 +45,13 @@ def home(request):
     }
     return render(request, 'images/home.html', context)
 
+def about(request):
+    return render(request, 'images/about.html', {'title':'About'})
+
+
 class PostListView(ListView):
     model = Post
-    template_name = 'images/home.html'
+    template_name = 'images/home.html' # <app>/<model_name>_<viewtype-'list' as example>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
@@ -63,6 +67,3 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-def about(request):
-    return render(request, 'images/about.html', {'title':'About'})
