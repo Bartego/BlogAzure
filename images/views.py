@@ -3,6 +3,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from images.forms import UploadForm
 from images.models import Image, Post
@@ -59,7 +60,7 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title','content']
 
