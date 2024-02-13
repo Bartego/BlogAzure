@@ -16,6 +16,7 @@ def register(request):
             # password = form.cleaned_data.get('passwrod')
     else:
         form = UserRegisterForm()
+        # watch for () at the ned of the class
     return render(request, 'users/register.html', {'form': form})
 
 
@@ -39,6 +40,7 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+        # there needs to be request.user.profile because profile is mapped to user and it wont work without 'user' in the middile.
     context = {
         'u_form': u_form,
         'p_form': p_form
