@@ -19,3 +19,4 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+# file = models.ImageField(upload_to='images/')
