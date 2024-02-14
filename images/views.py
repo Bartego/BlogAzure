@@ -2,7 +2,10 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import (ListView,
+                                DetailView,
+                                CreateView
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from images.forms import UploadForm
