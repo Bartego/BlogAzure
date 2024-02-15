@@ -11,18 +11,6 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-# # i need to fix following code as it doesnt work with azure blob storage
-        
-#     def save(self):
-#         super().save()
-
-#         img = Image.open(self.image.path)
-#         if img.height > 300 or img.width > 300:
-#             output_size = (300,300)
-#             img.thumbnail(output_size)
-#             img.save(self.image.path)
-
-# file = models.ImageField(upload_to='images/')
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -41,3 +29,17 @@ class Profile(models.Model):
                 image.save(f, format='JPEG')
 
             f.close()   
+
+
+# i need to fix following code as it doesnt work with azure blob storage
+        
+#     def save(self):
+#         super().save()
+
+#         img = Image.open(self.image.path)
+#         if img.height > 300 or img.width > 300:
+#             output_size = (300,300)
+#             img.thumbnail(output_size)
+#             img.save(self.image.path)
+
+# file = models.ImageField(upload_to='images/')
