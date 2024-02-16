@@ -60,6 +60,7 @@ class PostListView(ListView):
     template_name = 'images/home.html' # <app>/<model_name>_<viewtype-'list' as example>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    paginate_by = 5
 
 
 class PostDetailView(DetailView):
