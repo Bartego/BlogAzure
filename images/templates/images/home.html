@@ -26,7 +26,7 @@
         {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
           <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
         {% endif %}
-      {% endfor }
+      {% endfor %}
 
       {% if page_obj.has_next %}
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
