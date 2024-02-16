@@ -23,7 +23,7 @@ def register(request):
 @login_required
 def profile(request):
     '''
-    if you are goint to update profile data, you need to update user form and profile form, if you get 
+    if you are goin to update profile data, you need to update user form and profile form, if you get 
     POST request, instance is the one of current loged user
     '''
     if request.method == 'POST':
