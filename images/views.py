@@ -46,19 +46,19 @@ def upload_view(request):
 
 
 
-def home(request):
-    context = {
-        'posts': Post.objects.all() # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
-    }
-    return render(request, 'images/home.html', context)
+# def home(request):
+#     context = {
+#         'posts': Post.objects.all() # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
+#     }
+#     return render(request, 'images/home.html', context)
 
 def about(request):
-    return render(request, 'images/about.html', {'title':'About'})
+    return render(request, 'images/generic.html', {'title':'About'})
 
 
 class PostListView(ListView):
     model = Post
-    template_name = 'images/home.html' # <app>/<model_name>_<viewtype-'list' as example>.html
+    template_name = 'images/index.html' # <app>/<model_name>_<viewtype-'list' as example>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
