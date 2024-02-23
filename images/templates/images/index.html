@@ -5,9 +5,12 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicons/favicon-16x16.png' %}">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
 <html>
 	<head>
-		<title>Hyperspace by HTML5 UP</title>
+		<title>Radosovsky Blog</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="static/images/main_primary.css" />
@@ -21,8 +24,8 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Who we are</a></li>
-							<li><a href="#two">What we do</a></li>
+							<li><a href="#one">My work</a></li>
+							<li><a href="#two">My experience</a></li>
 							<li><a href="#three">Get in touch</a></li>
 						</ul>
 					</nav>
@@ -46,23 +49,25 @@
 
 				<!-- One -->
 					<section id="one" class="wrapper style2 spotlights">
+                        {% for post in posts %}
 						<section>
-							<a href="#" class="image"><img src="{% static 'images/webpics/pic01.jpg' %}" alt="" data-position="center center" /></a>
+							<a href="#" class="image"><img src="{{ post.post_image.url }}" alt=""/></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Sed ipsum dolor</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<h2>{{ post.title }}</h2>
+                                    <p>{{ post.content }}</p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
 									</ul>
 								</div>
 							</div>
 						</section>
-						<section>
+                        {% endfor %}
+						<!-- <section>
 							<a href="#" class="image"><img src="{% static 'images/webpics/pic02.jpg' %}" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Feugiat consequat</h2>
+									<h2>Blog 2</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
@@ -74,7 +79,7 @@
 							<a href="#" class="image"><img src="{% static 'images/webpics/pic03.jpg' %}" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Ultricies aliquam</h2>
+									<h2>Blog 3</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
@@ -82,12 +87,12 @@
 								</div>
 							</div>
 						</section>
-					</section>
+					</section> -->
 
 				<!-- Two -->
 					<section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>What we do</h2>
+							<h2>My work</h2>
 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
 							<div class="features">
 								<section>

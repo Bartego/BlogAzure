@@ -80,7 +80,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title','content']
+    fields = ['title','content','post_image']
 
     #following code will owerride default behaviour and post will be created with user that is currently loged
     def form_valid(self, form):

@@ -2571,6 +2571,9 @@ input, select, textarea {
 		.image img {
 			border-radius: 0.25em;
 			display: block;
+			width: 100%;
+			height: auto;
+			object-fit: cover;
 		}
 
 		.image.left, .image.right {
@@ -3005,7 +3008,7 @@ input, select, textarea {
 
 		.spotlights > section > .image {
 			background-position: center center;
-			background-size: cover;
+			background-size: contain;
 			border-radius: 0;
 			display: block;
 			position: relative;
