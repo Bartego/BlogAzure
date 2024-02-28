@@ -1,38 +1,45 @@
-{% extends "images/base.html" %}
+{% extends "images/generic.html" %}
+{% load custom_filters %}
+
 {% block content %}
-    <h1 class="mb-3">Post by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})
-    {% for post in posts %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <!-- name of the route is 'post detail'| parameter of the url is 'post.id' integer of the post you looking for   -->
-            <p class="article-content">{{ post.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
-    {% if is_paginated %}
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
+      <div style="text-align: left; margin-left:40px; padding-top: 20px;">
+        <p>Number of blog posts: {{ page_obj.paginator.count }}</p>
+      </div>
+      <!-- <h2 class="mb-3">Post by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2> -->
+      <section id="main" class="wrapper">
+        <div class="inner">
+          {% for post in posts %}
+              <h3><a class="major" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+              <!-- <small class="text-muted">{{ post.date_posted }}</small> -->
 
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
+              <h6>Posted: {{ post.date_posted }}</h6>
+              <p>{{ post.content | urlize | first_n_sentences:5 }}</p>  
+              <hr />
+          {% endfor %}
+        </div>
+      </section>
 
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
 
-    {% endif %}
+      <div style="text-align: center;margin-top: 10px; padding-bottom: 10px;">
+        <a class="button small primary" href="{% url 'user-posts' 'bartek' %}">Back to top</a>
+          {% if is_paginated %}
+            {% if page_obj.has_previous %}
+              <a class="button small" href="?page=1">First</a>
+              <a class="button small" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+      
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <a class="button primary small" href="?page={{ num }}">{{ num }}</a>
+              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="button small" href="?page={{ num }}">{{ num }}</a>
+              {% endif %}
+            {% endfor %}
+      
+            {% if page_obj.has_next %}
+              <a class="button small" href="?page={{ page_obj.next_page_number }}">Next</a>
+              <a class="button small" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+          {% endif %}
+      </div>
 {% endblock content %}

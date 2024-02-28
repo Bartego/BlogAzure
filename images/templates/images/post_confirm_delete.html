@@ -1,16 +1,24 @@
-{% extends "images/base.html" %}
+{% extends "images/generic.html" %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Delete Post</legend>
-                <h2> Are you sure you want to delete this post {{ object.title }} ?</h2>
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-                <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}"type="submit">Cancel</a>
-            </div>
-        </form>
-    </div>
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <article class="media content-section">
+                <!-- <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"> -->
+                <div class="media-body">
+                <h2 class="article-title"> {{ object.title }}</h2>
+                <p class="article-content">{{ object.content }}</p>
+                <div class="article-metadata">
+                    {% if object.author == user %}
+                    <div>
+                        <a class="button primary small" href="{% url 'post-update' object.id %}">Update</a>
+                        <a class="button small" href="{% url 'post-delete' object.id %}">Delete</a>
+                    </div>
+                    {% endif %}
+                    </br>
+                    <h4 class="text-muted" href="{% url 'user-posts' object.author.username %}">Author: {{ object.author }} on {{ object.date_posted }} </h4>
+                </div>
+                </div>
+            </article>
+        </div>
+    <section id="main" class="wrapper">
 {% endblock content %}

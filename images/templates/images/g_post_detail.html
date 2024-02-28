@@ -1,0 +1,14 @@
+{% extends "images/generic.html" %}
+{% block content %}
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h1 class="major">{{ object.title }}</h1>
+            <h6>Posted: {{ post.date_posted }}</h6>
+            <span class="image fit"><img src="{{ post.post_image.url }}" alt="" /></span>
+            <p>{{ object.content | urlize }}</p>
+        </div>
+    </section>
+    <div style="text-align: center;margin-top: 10px; padding-bottom: 10px;">
+        <a class="button small primary" href="{% url 'user-posts' 'bartek' %}">List of all posts</a>
+    </div>
+{% endblock %}

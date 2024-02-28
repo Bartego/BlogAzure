@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE HTML>
 <!--
 	Hyperspace by HTML5 UP
@@ -10,7 +11,7 @@
 <meta name="theme-color" content="#ffffff">
 <html>
 	<head>
-		<title>Radosovsky Blog</title>
+		<title>Py-Net Blog</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="static/images/main_primary.css" />
@@ -24,8 +25,8 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">My work</a></li>
-							<li><a href="#two">My experience</a></li>
+							<li><a href="#one">My Blog</a></li>
+							<li><a href="#two">My work experience</a></li>
 							<li><a href="#three">Get in touch</a></li>
 						</ul>
 					</nav>
@@ -38,11 +39,12 @@
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h1>My network blog</h1>
-							<p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
-							and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
+							<h1>Py-Net Blog</h1>
+							<p>Hello and welcome to Py-Net Blog! My name is Matej Radosovsky, and I currently work as an SD-WAN specialist. The motivation behind creating this blog was to challenge myself and prove that I can create a complete web experience, from concept to execution, independently.<br/>
+                            Having spent numerous years as a network engineer and project manager, I found myself drawn towards Python. My exploration into Python programming was started during the Covid-19 pandemic lockdowns, as I sought a productive outlet to clear my mind. I insisted on spending my time constructively. The start turned out to be more fulfilling than anticipated, likely due to my foundational programming knowledge from college. Over time, Python has fundamentally altered my approach to problem-solving in the workplace, igniting a passion for programming.<br/> 
+                            <a href="your-projects-url">Here</a>, you'll find a sample of Python projects that I've worked on. </p> 
 							<ul class="actions">
-								<li><a href="#one" class="button scrolly">Learn more</a></li>
+								<li><a href="#one" class="button scrolly">My blog</a></li>
 							</ul>
 						</div>
 					</section>
@@ -51,79 +53,60 @@
 					<section id="one" class="wrapper style2 spotlights">
                         {% for post in posts %}
 						<section>
-							<a href="#" class="image"><img src="{{ post.post_image.url }}" alt=""/></a>
+							<a href="{% url 'post-detail' post.id %}" class="image"><img src="{{ post.post_image.url }}" alt=""/></a>
 							<div class="content">
 								<div class="inner">
 									<h2>{{ post.title }}</h2>
-                                    <p>{{ post.content }}</p>
+                                    <p>{{ post.content|first_n_sentences:3 }}</p>
 									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
+										<li><a href="{% url 'post-detail' post.id %}" class="button">Learn more</a></li>
 									</ul>
 								</div>
 							</div>
 						</section>
                         {% endfor %}
-						<!-- <section>
-							<a href="#" class="image"><img src="{% static 'images/webpics/pic02.jpg' %}" alt="" data-position="top center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Blog 2</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="{% static 'images/webpics/pic03.jpg' %}" alt="" data-position="25% 25%" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Blog 3</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-					</section> -->
+                        <div style="text-align: center;margin-top: 10px; padding-bottom: 10px;">
+                            <a class="button primary" href="{% url 'user-posts' 'bartek' %}">All Posts</a>
+                        </div>
+                    </section>
 
 				<!-- Two -->
 					<section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>My work</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<h2>My work experience</h2>
+							<p>Experienced network professional with over 15 years in the field, currently taking time off for paternity leave to spend quality time with my adorable daughter.</p>
 							<div class="features">
 								<section>
 									<span class="icon solid major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>SD-WAN engineer</h3>
+									<p>From September 2022 I am working as Network engineer on SD-WAN solution based on Fortinet technology</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-lock"></span>
-									<h3>Aliquam sed nullam</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Project Manager</h3>
+									<p>June 2016 to September 2022 I occupied position of Project Manager for netwrok projects. Beside PM work I started with Python to automate boring and tedious tasks at work</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-cog"></span>
-									<h3>Sed erat ullam corper</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Project and Change supervisor</h3>
+									<p>July 2014 to June 2016 been responsible to review network changes created by team members, I have been implementing my own changes as well</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-desktop"></span>
-									<h3>Veroeros quis lorem</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>EOL Network engineer</h3>
+									<p>September 2011 to June 2014 working on network device replacements under End Of Life Projects, mainly Cisco routers switches and APs</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-link"></span>
-									<h3>Urna quis bibendum</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Network engineer Junior</h3>
+									<p>My first real job started together with last year of univeristy in  September 2009. Been working as junior network engineer, checking remote devices with script, moving those into prodcution if passed the test.</p>
 								</section>
 								<section>
 									<span class="icon major fa-gem"></span>
-									<h3>Aliquam urna dapibus</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Certification and college</h3>
+									<p>PCAP-31-03 Python Institue certificate (2022)</p>
+									<p>AZ-900 entry Azure cloud certificate from Microsoft (2023)</p>
+									<p>FEI STU Bratislava, P.Eng in Telecomunications (2005-2010)</p>
 								</section>
 							</div>
 							<ul class="actions">
@@ -163,17 +146,17 @@
 									<ul class="contact">
 										<li>
 											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
+											<span>82101 Ruzinov<br />
+											Bratislava<br />
+											Slovakia</span>
 										</li>
 										<li>
 											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
+											<a href="#">matej.radosovsky@gmail.com</a>
 										</li>
 										<li>
 											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
+											<span>(+421) 917 000 000</span>
 										</li>
 										<li>
 											<h3>Social</h3>
@@ -197,7 +180,9 @@
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Feel free to use any part, code from the page.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; Feel free to use any part or code from the page.</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li></br>
+                        <a href="http://html5up.net/license">Creative Commons license</a>.</p>
 					</ul>
 				</div>
 			</footer>

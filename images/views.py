@@ -19,41 +19,35 @@ from images.tables import ImageTable
 logger = logging.getLogger(__name__)
 
 
-def index_view(request):
-    images = Image.objects.all()
-    image_table = ImageTable(images)
-    upload_form = UploadForm()
+# def index_view(request):
+#     images = Image.objects.all()
+#     image_table = ImageTable(images)
+#     upload_form = UploadForm()
 
-    return render(request, 'images/index.html', {
-        'images': images,
-        'image_table': image_table,
-        'upload_form': upload_form,
-    })
-
-
-@require_http_methods(["POST"])
-def upload_view(request):
-    upload_form = UploadForm(data=request.POST, files=request.FILES)
-
-    if upload_form.is_valid():
-        upload_form.save(commit=True)
-    else:
-        logger.warning("Something went wrong with uploading the file.")
-        logger.warning(request.POST)
-        logger.warning(request.FILES)
-
-    return redirect('images-index')
+#     return render(request, 'images/index.html', {
+#         'images': images,
+#         'image_table': image_table,
+#         'upload_form': upload_form,
+#     })
 
 
+# @require_http_methods(["POST"])
+# def upload_view(request):
+#     upload_form = UploadForm(data=request.POST, files=request.FILES)
 
-# def home(request):
-#     context = {
-#         'posts': Post.objects.all() # common error -> 'post':posts wont work as .html files loop over 'posts' not 'post' 
-#     }
-#     return render(request, 'images/home.html', context)
+#     if upload_form.is_valid():
+#         upload_form.save(commit=True)
+#     else:
+#         logger.warning("Something went wrong with uploading the file.")
+#         logger.warning(request.POST)
+#         logger.warning(request.FILES)
+
+#     return redirect('images-index')
+
+###
 
 def about(request):
-    return render(request, 'images/generic.html', {'title':'About'})
+    return render(request, 'images/g_post_detail.html', {'title':'About'})
 
 
 class PostListView(ListView):
@@ -61,7 +55,7 @@ class PostListView(ListView):
     template_name = 'images/index.html' # <app>/<model_name>_<viewtype-'list' as example>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 3
 
 class UserPostListView(ListView):
     model = Post
@@ -77,9 +71,11 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+    template_name = 'images/g_post_detail.html'
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
+    template_name = 'images/g_post_form.html'
     fields = ['title','content','post_image']
 
     #following code will owerride default behaviour and post will be created with user that is currently loged
@@ -105,6 +101,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
+    # template_name = 'images/g_post_confirm_delelte.html'
     success_url = '/'
 
     def test_func(self):
