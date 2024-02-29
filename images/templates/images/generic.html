@@ -23,9 +23,16 @@
 				<a href="{% url 'blog-home' %}" class="title">Py-Net</a>
 				<nav>
 					<ul>
-						<li><a href="{% url 'blog-home' %}">Home</a></li>
-						<li><a href="generic.html" class="active">Generic</a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'post-create' %}" class="active">New Post</a></li>
 						<li><a href="elements.html">Elements</a></li>
+						{% else %}
+						<li><a href="{% url 'blog-home' %}">Home</a></li>
+						<li><a href="{% url 'user-posts' 'bartek' %}" class="active">All Posts</a></li>
+						<li><a href="elements.html">Elements</a></li>
+						{% endif %}
 					</ul>
 				</nav>
 			</header>

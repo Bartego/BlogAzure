@@ -47,7 +47,7 @@ logger = logging.getLogger(__name__)
 ###
 
 def about(request):
-    return render(request, 'images/g_post_detail.html', {'title':'About'})
+    return render(request, 'images/about.html', {'title':'About'})
 
 
 class PostListView(ListView):
