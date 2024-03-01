@@ -3,15 +3,13 @@
 
 {% block content %}
       <div style="text-align: left; margin-left:40px; padding-top: 20px;">
-        <p>Number of blog posts: {{ page_obj.paginator.count }}</p>
+        <p>Number of blog posts {{ page_obj.paginator.count }}</p>
       </div>
       <!-- <h2 class="mb-3">Post by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2> -->
       <section id="main" class="wrapper">
         <div class="inner">
           {% for post in posts %}
               <h3><a class="major" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
-              <!-- <small class="text-muted">{{ post.date_posted }}</small> -->
-
               <h6>Posted: {{ post.date_posted }}</h6>
               <p>{{ post.content | urlize | first_n_sentences:5 }}</p>  
               <hr />
@@ -21,7 +19,7 @@
 
 
       <div style="text-align: center;margin-top: 10px; padding-bottom: 10px;">
-        <a class="button small primary" href="{% url 'user-posts' 'bartek' %}">Back to top</a>
+        <a class="button small" href="{% url 'user-posts' 'bartek' %}">Back to top</a>
           {% if is_paginated %}
             {% if page_obj.has_previous %}
               <a class="button small" href="?page=1">First</a>

@@ -71,11 +71,11 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'images/g_post_detail.html'
+    template_name = 'images/post_detail.html'
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    template_name = 'images/g_post_form.html'
+    template_name = 'images/post_form.html'
     fields = ['title','content','post_image']
 
     #following code will owerride default behaviour and post will be created with user that is currently loged

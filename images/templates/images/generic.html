@@ -26,12 +26,11 @@
 						{% if user.is_authenticated %}
 						<li><a href="{% url 'logout' %}">Logout</a></li>
 						<li><a href="{% url 'profile' %}">Profile</a></li>
-						<li><a href="{% url 'post-create' %}" class="active">New Post</a></li>
-						<li><a href="elements.html">Elements</a></li>
+						<li><a href="{% url 'post-create' %}">New Post</a></li>
+						<li><a href="{% url 'user-posts' 'bartek' %}">All Posts</a></li>
 						{% else %}
 						<li><a href="{% url 'blog-home' %}">Home</a></li>
-						<li><a href="{% url 'user-posts' 'bartek' %}" class="active">All Posts</a></li>
-						<li><a href="elements.html">Elements</a></li>
+						<li><a href="{% url 'user-posts' 'bartek' %}">All Posts</a></li>
 						{% endif %}
 					</ul>
 				</nav>
