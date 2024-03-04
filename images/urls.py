@@ -20,4 +20,5 @@ urlpatterns = [
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     # path('', views.home, name='blog-home'),
     path('about/', views.about, name='blog-about'),
+    path('hobby/', views.hobby, name='blog-hobby'),
 ]

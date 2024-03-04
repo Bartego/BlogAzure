@@ -20,6 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #for remote dev
 # load_dotenv(BASE_DIR / '.env')
 
+#for local dev
+load_dotenv()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -27,8 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # for remote dev
 # SECRET_KEY = os.getenv('SECRET_KEY')
-SECRET_KEY = 'django-insecure-m10c@k!u5b!y@=n%!9dxmc4#=q)q$)tdu$6$&w#1p_y107=2c_'
-
+SECRET_KEY = os.getenv("MY_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # for remote dev

@@ -45,8 +45,6 @@
                             <a href="your-projects-url">Here</a>, you'll find a sample of Python projects that I've worked on. </p> 
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Latest Posts</a></li>
-								<li><a href="#one" class="button scrolly">My hobby</a></li>
-								<li><a href="{% url 'blog-about' %}" class="button scrolly">More about me</a></li>
 							</ul>
 						</div>
 					</section>
@@ -115,6 +113,8 @@
 							</div>
 							<ul class="actions">
 								<li><a href="{% static 'images/pdf/CVJohnDoe.pdf' %}" class="button">Download CV</a></li>
+                                <li><a href="{% url 'blog-hobby' %}" class="button scrolly">My hobby</a></li>
+								<li><a href="{% url 'blog-about' %}" class="button scrolly">More about me</a></li>
 							</ul>
 						</div>
 					</section>
@@ -165,11 +165,11 @@
 										<li>
 											<h3>Social</h3>
 											<ul class="icons">
-												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+												<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+												<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+												<li><a href="https://github.com/Bartego" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+												<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+												<!-- <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li> -->
 											</ul>
 										</li>
 									</ul>
@@ -185,7 +185,7 @@
 				<div class="inner">
 					<ul class="menu">
 						<li>&copy; Feel free to use any part or code from the page.</li>
-                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li></br>
+                        <li>Design and hats off to: <a href="http://html5up.net">HTML5 UP</a></li></br>
                         <a href="http://html5up.net/license">Creative Commons license</a>.</p>
 					</ul>
 				</div>

@@ -48,6 +48,8 @@ logger = logging.getLogger(__name__)
 
 def about(request):
     return render(request, 'images/about.html', {'title':'About'})
+def hobby(request):
+    return render(request, 'images/hobby.html', {'title':'Hobby'})
 
 
 class PostListView(ListView):
