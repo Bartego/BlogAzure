@@ -13,6 +13,7 @@ media
 mediafiles
 staticfiles
 notes
+.DS_Store
 
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files

@@ -1,46 +1,204 @@
-{% load render_table from django_tables2 %}
-{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicons/favicon-16x16.png' %}">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<html>
+	<head>
+		<title>Py-Net Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/images/main_primary.css" />
+		<noscript><link rel="stylesheet" href="{% static 'images/main_primary.css' %}"></noscript>
+	</head>
+	<body class="is-preload">
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>django-images</title>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="container">
-            <h3 class="mt-3"><a href="https://github.com/duplxey/django-images">django-images</a></h3>
-            <div class="row">
-                <div class="col-12 col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Images</h5>
-                            {% if images.count == 0 %}
-                                No images have been uploaded yet.
-                            {% else %}
-                                {% render_table image_table %}
-                            {% endif %}
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">My Blog</a></li>
+							<li><a href="#two">My work experience</a></li>
+							<li><a href="#three">Get in touch</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Py-Net Blog</h1>
+							<p>Hello and welcome to Py-Net Blog! My name is Matej Radosovsky, and I currently work as an SD-WAN specialist. The motivation behind creating this blog was to challenge myself and prove that I can create a complete web experience, from concept to execution, independently.<br/>
+                            Having spent numerous years as a network engineer and project manager, I found myself drawn towards Python. My exploration into Python programming was started during the Covid-19 pandemic lockdowns, as I sought a productive outlet to clear my mind. I insisted on spending my time constructively. The start turned out to be more fulfilling than anticipated, likely due to my foundational programming knowledge from college. Over time, Python has fundamentally altered my approach to problem-solving in the workplace, igniting a passion for programming.<br/> 
+                            <a href="your-projects-url">Here</a>, you'll find a sample of Python projects that I've worked on. </p> 
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Latest Posts</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+                        {% for post in posts %}
+						<section>
+							<a href="{% url 'post-detail' post.id %}" class="image"><img src="{{ post.post_image.url }}" alt=""/></a>
+							<div class="content">
+								<div class="inner">
+									<h2>{{ post.title }}</h2>
+                                    <p>{{ post.content|first_n_sentences:3 }}</p>
+									<ul class="actions">
+										<li><a href="{% url 'post-detail' post.id %}" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+                        {% endfor %}
+                        <div style="text-align: center;margin-top: 10px; padding-bottom: 10px;">
+                            <a class="button primary" href="{% url 'user-posts' 'bartek' %}">All Posts</a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Upload</h5>
-                            <p class="card-text">Fill out the form and press submit in order to upload a new image.</p>
-                            <form action="{% url "images-upload" %}" enctype="multipart/form-data" method="post">
-                                {% csrf_token %}
-                                {{ upload_form|crispy }}
-                                <input type="submit" class="btn btn-primary w-100" value="Upload">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+                    </section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>My work experience</h2>
+							<p>Experienced network professional with over 15 years in the field, currently taking time off for paternity leave to spend quality time with my adorable daughter.</p>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-code"></span>
+									<h3>SD-WAN engineer</h3>
+									<p>From September 2022, I am working as a network engineer on an SD-WAN solution based on Fortinet technology.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-lock"></span>
+									<h3>Project Manager</h3>
+									<p>June 2016 to September 2022 I occupied the position of project manager for netwrok projects. Beside PM work, I started with Python to automate boring and tedious tasks at work.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-cog"></span>
+									<h3>Project and Change supervisor</h3>
+									<p>July 2014 to June 2016, I was responsible for reviewing network changes created by team members and informing customer about the impact, schedule, and testing. I have been implementing my own changes as well.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-desktop"></span>
+									<h3>EOL Network engineer</h3>
+									<p>September 2011 to June 2014, working on network device replacements under End of Life Projects, mainly Cisco routers, switches and Access Points</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-link"></span>
+									<h3>Network engineer Junior</h3>
+									<p>I began my professional career in September 2009, during the final year of my university studies. As a junior network engineer, my responsibilities included remotely monitoring devices using scripts and deploying them to production upon successful testing.</p>
+								</section>
+								<section>
+									<span class="icon major fa-gem"></span>
+									<h3>Certification and college</h3>
+                                    <ul>
+									    <li><a href="https://pythoninstitute.org/pcap">PCAP-31-03</a> Python Institue certificate (2022)</li>
+									    <li><a href="https://learn.microsoft.com/en-us/credentials/certifications/exams/az-900/">AZ-900</a> entry Azure cloud certificate from Microsoft (2023)</li>
+									    <li><a href="https://www.fei.stuba.sk/english">FEI STU Bratislava,</a> P.Eng in Telecomunications (2005-2010)</li>
+                                    </ul>
+								</section>
+							</div>
+							<ul class="actions">
+								<li><a href="{% static 'images/pdf/CVJohnDoe.pdf' %}" class="button">Download CV</a></li>
+                                <li><a href="{% url 'blog-hobby' %}" class="button scrolly">My hobby</a></li>
+								<li><a href="{% url 'blog-about' %}" class="button scrolly">More about me</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Get in touch</h2>
+							<p>I prefer email communication or phone call over social media connections. I don't have Facebook account anymore, LinkedIn has not been updated for ages. </br>At the moment, form below doesnt work. Phone number and email are valid.</p>
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Send Message</a></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Address</h3>
+											<span>82101 Ruzinov<br />
+											Bratislava<br />
+											Slovakia</span>
+										</li>
+										<li>
+											<h3>Email</h3>
+											<a href="#">matej.radosovsky@gmail.com</a>
+										</li>
+										<li>
+											<h3>Phone</h3>
+											<span>(+421) 917 000 000</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons">
+												<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+												<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+												<li><a href="https://github.com/Bartego" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+												<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+												<!-- <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li> -->
+											</ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Feel free to use any part or code from the page.</li>
+                        <li>Design and hats off to: <a href="http://html5up.net">HTML5 UP</a></li></br>
+                        <a href="http://html5up.net/license">Creative Commons license</a>.</p>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="{% static 'images/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'images/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'images/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'images/js/browser.min.js' %}"></script>
+			<script src="{% static 'images/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'images/js/util.js' %}"></script>
+			<script src="{% static 'images/js/main.js' %}"></script>
+	</body>
 </html>

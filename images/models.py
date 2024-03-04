@@ -21,6 +21,7 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_image = models.ImageField(default='pic06.jpg',upload_to='post_pics')
 
     def __str__(self):
         return self.title

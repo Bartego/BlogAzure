@@ -17,27 +17,36 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / '.env')
+#for remote dev
+# load_dotenv(BASE_DIR / '.env')
+
+#for local dev
+load_dotenv()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+# for remote dev
+# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv("MY_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+# for remote dev
+# DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
-# ALLOWED_HOSTS = [] # neeeded to startup new apps in the project
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+# # ALLOWED_HOSTS = [] # neeeded to startup new apps in the project
+# CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 
-SECURE_SSL_REDIRECT = \
-    os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
-if SECURE_SSL_REDIRECT:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = \
+#     os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
+# if SECURE_SSL_REDIRECT:
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+DEBUG = True
 
-
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -87,15 +96,22 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# for remote dev
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DBNAME'),
+#         'HOST': os.environ.get('DBHOST'),
+#         'USER': os.environ.get('DBUSER'),
+#         'PASSWORD': os.environ.get('DBPASS'),
+#         'OPTIONS': {'sslmode': 'require'},
+#     }
+# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DBNAME'),
-        'HOST': os.environ.get('DBHOST'),
-        'USER': os.environ.get('DBUSER'),
-        'PASSWORD': os.environ.get('DBPASS'),
-        'OPTIONS': {'sslmode': 'require'},
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -146,25 +162,26 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-DEFAULT_FILE_STORAGE = 'core.azure_storage.AzureMediaStorage'
-STATICFILES_STORAGE = 'core.azure_storage.AzureStaticStorage'
+# for remote dev
+# DEFAULT_FILE_STORAGE = 'core.azure_storage.AzureMediaStorage'
+# STATICFILES_STORAGE = 'core.azure_storage.AzureStaticStorage'
 
-AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
-AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')
-AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+# AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
+# AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')
+# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
 
-STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/media/'
-MEDIA_ROOT = BASE_DIR / 'mediafiles'
-
-
-# STATIC_URL = '/static/'
+# STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/static/'
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# MEDIA_URL = '/media/'
+# MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/media/'
 # MEDIA_ROOT = BASE_DIR / 'mediafiles'
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 
 # Default primary key field type

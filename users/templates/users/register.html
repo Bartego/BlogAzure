@@ -1,7 +1,10 @@
-{% extends "images/base.html" %}
+{% extends "images/generic.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
+<section id="main" class="wrapper">
+    <div class="inner">
+        <p> Nice try but this is personal blog and I do not plan to register additional users for now.</p>
+    <!-- <div class="content-section">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -17,5 +20,7 @@
                 Already have An Account? <a class="ml-2" href="{% url 'login' %}" >Sign In</a>
             </small>
         </div>
-    </div>  
+    </div> -->
+    </div>
+</section>  
 {% endblock %}
