@@ -46,9 +46,10 @@ SECURE_SSL_REDIRECT = \
     os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
 if SECURE_SSL_REDIRECT:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-DEBUG = True
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -111,12 +112,12 @@ DATABASES = {
 }
 
 # for local dev
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
