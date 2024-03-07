@@ -41,4 +41,5 @@ This project is primarily used to demonstrate how to [deploy](https://github.com
 - [Render](https://testdriven.io/blog/django-render/)
 - [Fly.io](https://testdriven.io/blog/django-fly/)
 - [Dokku](https://testdriven.io/blog/django-dokku/)
+- [Azure Web app](https://testdriven.io/blog/django-azure-app-service/#configure-django)
 
