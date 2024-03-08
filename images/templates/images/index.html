@@ -132,16 +132,23 @@
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
+										{% csfr_token %}
 										<div class="fields">
 											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
+												{{ form.from_email.label_tag }}
+												{{ form.from_email }}
+												<!-- <label for="name">Name</label>
+												<input type="text" name="name" id="name" /> -->
 											</div>
 											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
+												{{ form.subject.label_tag }}
+												{{ form.subject }}
+												<!-- <label for="email">Email</label>
+												<input type="text" name="email" id="email" /> -->
 											</div>
 											<div class="field">
+												{{ form.message.label_tag }}
+												{{ form.message }}
 												<label for="message">Message</label>
 												<textarea name="message" id="message" rows="5"></textarea>
 											</div>
