@@ -131,7 +131,7 @@
 							<p>I prefer email communication or phone call over social media connections. I don't have Facebook account anymore, LinkedIn has not been updated for ages. </br>At the moment, form below doesnt work. Phone number and email are valid.</p>
 							<div class="split style1">
 								<section>
-									<form method="post" action="#">
+									<form method="post" action="">
 										{% csrf_token %}
 										<div class="fields">
 											<div class="field half">
@@ -154,7 +154,7 @@
 											</div>
 										</div>
 										<ul class="actions">
-											<li><a href="" class="button submit">Send Message</a></li>
+											<li><input type="submit" value="Send Message" class="button submit"></li>
 										</ul>
 									</form>
 								</section>
