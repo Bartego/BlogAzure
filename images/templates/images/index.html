@@ -132,7 +132,7 @@
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
-										{% csfr_token %}
+										{% csrf_token %}
 										<div class="fields">
 											<div class="field half">
 												{{ form.from_email.label_tag }}
