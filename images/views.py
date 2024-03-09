@@ -15,36 +15,12 @@ from images.forms import UploadForm
 from images.models import Image, Post
 from images.tables import ImageTable
 
+from django.core.mail import send_mail
+import os
+from .forms import ContactForm
 
 logger = logging.getLogger(__name__)
 
-
-# def index_view(request):
-#     images = Image.objects.all()
-#     image_table = ImageTable(images)
-#     upload_form = UploadForm()
-
-#     return render(request, 'images/index.html', {
-#         'images': images,
-#         'image_table': image_table,
-#         'upload_form': upload_form,
-#     })
-
-
-# @require_http_methods(["POST"])
-# def upload_view(request):
-#     upload_form = UploadForm(data=request.POST, files=request.FILES)
-
-#     if upload_form.is_valid():
-#         upload_form.save(commit=True)
-#     else:
-#         logger.warning("Something went wrong with uploading the file.")
-#         logger.warning(request.POST)
-#         logger.warning(request.FILES)
-
-#     return redirect('images-index')
-
-###
 
 def about(request):
     return render(request, 'images/about.html', {'title':'About'})
@@ -58,6 +34,13 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ContactForm()  # Add the form to the context
+        return context
+
+
 
 class UserPostListView(ListView):
     model = Post
@@ -111,4 +94,17 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+    
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = form.cleaned_data['from_email']
+            send_mail(subject, message, from_email, [os.getenv('EMAIL_USER')])
+        return redirect('blog-home')
+    else:
+        form = ContactForm()
+    return render(request, 'index.html', {'form': form})
     

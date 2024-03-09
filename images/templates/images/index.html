@@ -1,5 +1,6 @@
 {% load static %}
 {% load custom_filters %}
+{% load crispy_forms_tags %}
 <!DOCTYPE HTML>
 <!--
 	Hyperspace by HTML5 UP
@@ -128,30 +129,27 @@
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h2>Get in touch</h2>
-							<p>I prefer email communication or phone call over social media connections. I don't have Facebook account anymore, LinkedIn has not been updated for ages. </br>At the moment, form below doesnt work. Phone number and email are valid.</p>
+							<p>I prefer email communication or phone call over social media connections. I don't have Facebook account anymore. </br>At the moment, form below doesnt work. Phone number and email are valid.</p>
 							<div class="split style1">
 								<section>
 									<form method="post" action="">
 										{% csrf_token %}
+										
 										<div class="fields">
 											<div class="field half">
+												{{ form.as_p}}
+												<!-- {{ form|crispy }}
 												{{ form.from_email.label_tag }}
-												{{ form.from_email }}
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
+												{{ form.from_email }} -->
 											</div>
-											<div class="field half">
+											<!-- <div class="field half">
 												{{ form.subject.label_tag }}
 												{{ form.subject }}
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
 											</div>
 											<div class="field">
 												{{ form.message.label_tag }}
 												{{ form.message }}
-												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5"></textarea>
-											</div>
+											</div> -->
 										</div>
 										<ul class="actions">
 											<li><input type="submit" value="Send Message" class="button submit"></li>
