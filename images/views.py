@@ -100,11 +100,11 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
             from_email = form.cleaned_data['from_email']
+            message = 'From: ' + from_email + '\n\nMessage:\n' + form.cleaned_data['message']
             send_mail(subject, message, from_email, [os.getenv('EMAIL_USER')])
-        return redirect('blog-home')
+        return render(request, 'images/contact.html', {'form': form, 'message': 'Your message has been sent to matej.radosovsky@gmail.com. Thank you, I\'ll contact you as soon as possible.'})
     else:
         form = ContactForm()
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'images/index.html', {'form': form})
     

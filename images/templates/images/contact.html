@@ -1,0 +1,12 @@
+{% extends "images/generic.html" %}
+{% block content %}
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+            <!-- <p>Thank you for your message, I contact you back as soon as possible</p> -->
+        </div>
+    </section>
+{% endblock %}
