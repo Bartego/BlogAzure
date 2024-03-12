@@ -12,34 +12,34 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 # works with Azure web app
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
-    #     if self.image:
-    #         # Open the image file using Django's storage API
-    #         f = storage.open(self.image.name, 'r')
-    #         image = Image.open(f)
+        if self.image:
+            # Open the image file using Django's storage API
+            f = storage.open(self.image.name, 'r')
+            image = Image.open(f)
 
-    #         if image.height > 300 or image.width > 300:
-    #             output_size = (300, 300)
-    #             image.thumbnail(output_size)
+            if image.height > 300 or image.width > 300:
+                output_size = (300, 300)
+                image.thumbnail(output_size)
                 
-    #             # Save the resized image back to storage
-    #             f = storage.open(self.image.name, 'w')
-    #             image.save(f, format='JPEG')
+                # Save the resized image back to storage
+                f = storage.open(self.image.name, 'w')
+                image.save(f, format='JPEG')
 
-    #         f.close()   
+            f.close()   
 
 
 # works for local dev
         
-    def save(self):
-        super().save()
+    # def save(self):
+    #     super().save()
 
-        img = Image.open(self.image.path)
-        if img.height > 300 or img.width > 300:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+    #     img = Image.open(self.image.path)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300,300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)
 
 # file = models.ImageField(upload_to='images/')
