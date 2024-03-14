@@ -11,7 +11,7 @@
           {% for post in posts %}
               <h3><a class="major" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
               <h6>Posted: {{ post.date_posted }}</h6>
-              <p>{{ post.content | urlize | first_n_sentences:5 }}</p>  
+              <p>{{ post.content | first_n_sentences:5 | safe | urlize }}</p>  
               <hr />
           {% endfor %}
         </div>

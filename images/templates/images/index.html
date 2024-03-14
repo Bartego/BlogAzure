@@ -62,7 +62,7 @@
 							<div class="content">
 								<div class="inner">
 									<h2>{{ post.title }}</h2>
-                                    <p>{{ post.content|first_n_sentences:3 }}</p>
+                                    <p>{{ post.content|first_n_sentences:3 | safe }}</p>
 									<ul class="actions">
 										<li><a href="{% url 'post-detail' post.id %}" class="button">Learn more</a></li>
 									</ul>
